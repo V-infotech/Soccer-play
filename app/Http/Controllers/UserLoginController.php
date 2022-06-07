@@ -2,46 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user_login;
+use App\Models\userlogin;
 use Illuminate\Http\Request;
-class UserLoginController extends Controller
+
+class UserloginController extends Controller
 {
     //
+
     public function index()
-    {
-        return user_login::all();
+{
+    return userlogin:: all();
+
+}
+public function show($id){
+    return userlogin::find ($id);
+}
+    //
+    // to store new data in db we use store function 
+public function store (Request $request){
+    $request->validate([
+        'username'=> 'required',
+        'password'=>'required',
+        ]);
+    return  userlogin:: create($request->all());
     }
 
-    //to store the data
-    
-    public function store(Request $request)
-    {
-           $request->validate([
-               'username'=>'required',
-               'password'=>'required',
-               
-              
-           ]);
-           return user_login :: create($request->all());
-        }
-           
-     //find data by id
-    public function show($id)
-    
-    {
-        return user_login::find ($id);
+    public function update(Request $request,$id ){
+        $loginpage = userlogin::find($id);
+         $loginpage->update($request->all());
+        //  Return
     }
-    //update data
-    public function update(Request $request,$id){
-    $student=user_login::find ($id);
-    return $student->update($request->all());
-    }
-
-    public function destroy (Request $request,$id)
-    {
-        $student =user_login::find($id);
-        return $student->delete($request->all());
-
-    }
-    
 }
