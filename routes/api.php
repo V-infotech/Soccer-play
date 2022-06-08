@@ -4,18 +4,8 @@ use App\Http\Controllers\UserLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-
+///login api
 Route::get('/login',[UserloginController::class,'index']);
 // some one hit student it will call index method then index will cll stunddet table daata from the controllerQ
 Route::post('/store',[UserLoginController::class,'store']);
@@ -27,3 +17,6 @@ Route::put('/userlogin/{id}',[UserLoginController::class,'update']); //update th
 Route::delete('/userlogin/{id}',[UserLoginController::class,'destroy']); 
 
 Route::get('/userlogin/search/{username}',[UserLoginController::class,'search']);
+
+
+  
